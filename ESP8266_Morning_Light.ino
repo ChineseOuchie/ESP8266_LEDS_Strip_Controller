@@ -27,12 +27,12 @@ void setup(void){
 	delay(10);
 	Serial.println('\n');
 
-  // WIFI CREDENTIALS
+	// WIFI CREDENTIALS
 	wifiMulti.addAP("SSID", "PASSWORD"); 
 
 	Serial.println("Connecting ...");
 	int i = 0;
-  // Waiting for Wifi
+	// Waiting for Wifi
 	while (wifiMulti.run() != WL_CONNECTED) {
 		delay(250);
 		Serial.print('.');
@@ -51,20 +51,20 @@ void setup(void){
 
 	server.on("/", HTTP_GET, handleRoot);
 	server.on("/changeColor", HTTP_POST, handleChangeColor);
-  server.on("/lightOn", HTTP_GET, handleLightOn);
-  server.on("/lightOff", HTTP_GET, handleLightOff);
+	server.on("/lightOn", HTTP_GET, handleLightOn);
+	server.on("/lightOff", HTTP_GET, handleLightOff);
 	server.onNotFound(handleNotFound);
 
 	server.begin();
 	Serial.println("HTTP server started");
-}
+	}
 
 void loop(void){
 	server.handleClient();
 }
 
 void handleRoot() {
-	  server.send(200, "text/html", rootHtml());
+	server.send(200, "text/html", rootHtml());
 }
 
 void handleChangeColor() {
@@ -74,40 +74,40 @@ void handleChangeColor() {
 	}
   
 	String red = server.arg("red");
-  String green = server.arg("green");
-  String blue = server.arg("blue");
-  String data;
-  
-  JsonObject root  = doc.to<JsonObject>();
-  root["red"] = red;
-  root["green"] = green;
-  root["blue"] = blue;
-  root["message"] = "Color Changed";
-  serializeJson(doc, data);
-  
+	String green = server.arg("green");
+	String blue = server.arg("blue");
+	String data;
+
+	JsonObject root  = doc.to<JsonObject>();
+	root["red"] = red;
+	root["green"] = green;
+	root["blue"] = blue;
+	root["message"] = "Color Changed";
+	serializeJson(doc, data);
+
 	server.send(200, "text/json", data);
 }
 
 void handleLightOn() {
-  turnLightOn();
-  String data;
-  
-  JsonObject root  = doc.to<JsonObject>();
-  root["message"] = "Lights on";
-  serializeJson(doc, data);
-  
-  server.send(200, "text/html", data);
+	turnLightOn();
+	String data;
+
+	JsonObject root  = doc.to<JsonObject>();
+	root["message"] = "Lights on";
+	serializeJson(doc, data);
+
+	server.send(200, "text/html", data);
 }
 
 void handleLightOff() {
-  turnLightOff();
-  String data;
-  
-  JsonObject root  = doc.to<JsonObject>();
-  root["message"] = "Lights off";
-  serializeJson(doc, data);
-  
-  server.send(200, "text/html", data);
+	turnLightOff();
+	String data;
+
+	JsonObject root  = doc.to<JsonObject>();
+	root["message"] = "Lights off";
+	serializeJson(doc, data);
+
+	server.send(200, "text/html", data);
 }
 
 void handleNotFound(){
@@ -115,19 +115,19 @@ void handleNotFound(){
 }
 
 void turnLightOn() {
-  analogWrite(redPin, 255);
-  analogWrite(greenPin, 255);
-  analogWrite(bluePin, 255);
+	analogWrite(redPin, 255);
+	analogWrite(greenPin, 255);
+	analogWrite(bluePin, 255);
 }
 
 void turnLightOff() {
-  analogWrite(redPin, 0);
-  analogWrite(greenPin, 0);
-  analogWrite(bluePin, 0);
+	analogWrite(redPin, 0);
+	analogWrite(greenPin, 0);
+	analogWrite(bluePin, 0);
 }
 
 void changeColor(String r, String g, String b) {
-  analogWrite(redPin, r.toInt());
-  analogWrite(greenPin, g.toInt());
-  analogWrite(bluePin, b.toInt());
+	analogWrite(redPin, r.toInt());
+	analogWrite(greenPin, g.toInt());
+	analogWrite(bluePin, b.toInt());
 }
