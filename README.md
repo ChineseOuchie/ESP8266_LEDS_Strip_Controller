@@ -15,6 +15,7 @@ Using a NodeMCU ESP8266 to change lights with a customized web application hoste
 https://www.youtube.com/watch?v=qLgzeUmqXxM
 
 ### Schemetics / PCB layout
+![Build](https://i.imgur.com/yieKQTP.png)
 ![PCB layout](https://i.imgur.com/D3nU7sZ.png)
 
 ### Parts used
