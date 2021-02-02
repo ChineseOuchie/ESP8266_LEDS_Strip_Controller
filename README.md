@@ -1,15 +1,28 @@
-# It is still work in progress
+Using a NodeMCU ESP8266 to change lights with a customized web application hosted on the ESP8266.
 
-The ESP8266 returns a JSON after making a request. I recommended you to a static IP for your ESP8266. You can also use "Postman" to make API request.
+### Features
+- Lights on/off
+- Change color
+- Morning light (Set a wake up time and it will slowly change the lights color until it is bright white)
 
-Changing colors might not be working at the moment.
+### Stuff to change before use
+- Change SSID & password
+- Change `NTP_ADDRESS` to your region
+- Give it a static IP (recommanded)
+- Change ports (optional)
 
----
+### Example video
+https://www.youtube.com/watch?v=qLgzeUmqXxM
 
-This is basically the schematic that I used (D5, D6 and D7 on my nodemcu esp8266 v1)
+### Schemetics / PCB layout
+![PCB layout](https://i.imgur.com/D3nU7sZ.png)
 
-![ESP8266 schematic](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/03/ESP32-LED-strip-schematic_f.png)
+### Parts used
+- NodeMCU ESP8266
+- 3x 220Ω resistors
+- 3x IRLZ44N transistors
+- RGB-5v separated LED strip (No data pin)
 
-
+### Warning
 You have to modify the code a bit if you are using LED strips with "data" pin 
-(ws2812/ws2812b) instead of RGB separated pin
+(ws2812/ws2812b) instead of RGB separated pin.
