@@ -8,7 +8,7 @@ Using a NodeMCU ESP8266 to change lights with a customized web application hoste
 ### Stuff to change before use
 - Change SSID & password
 - Change `NTP_ADDRESS` to your region
-- Give it a static IP (recommanded)
+- Give it a static IP (recommended)
 - Change ports (optional)
 
 ### Example video
